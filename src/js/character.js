@@ -7,8 +7,6 @@ export default class Character {
             this.type = type;
             this.level = 1;
             this.health = 100;
-            this.attack = null;
-            this.defence = null; // ? or better just not mention it there?
         } else {
             throw new Error('some incorrect values were inputed');
         }
