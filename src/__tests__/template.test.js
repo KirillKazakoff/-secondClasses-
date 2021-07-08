@@ -10,7 +10,7 @@ const successInit = {
 };
 
 test('successful initialize', () => {
-    const result = new Bowman('Clinkz', 'Bowman');
+    const result = new Bowman('Clinkz');
     expect(result).toEqual(successInit);
 });
 
@@ -39,14 +39,14 @@ const successPromotion = {
 };
 
 test('levelUp func success', () => {
-    const result = new Bowman('Clinkz', 'Bowman');
+    const result = new Bowman('Clinkz');
 
     result.levelUp();
     expect(result).toEqual(successPromotion);
 });
 
 test('damage func check', () => {
-    const result = new Bowman('Clinkz', 'Bowman');
+    const result = new Bowman('Clinkz');
 
     result.damage(10);
     expect(result.health).toBe(92.5);
@@ -58,7 +58,7 @@ test('damage func check', () => {
 
 test('levelUp fail', () => {
     const check = () => {
-        const result = new Bowman('Clinkz', 'Bowman');
+        const result = new Bowman('Clinkz');
 
         result.damage(1000);
         result.levelUp();
