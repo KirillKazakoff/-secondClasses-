@@ -1,4 +1,4 @@
-import {Bowman, Swordman, Magician, Undead, Zombie, Daemon} from '../js/charTypes.js';
+import Bowman from '../js/bowman';
 
 const successInit = {
     attack: 25,
@@ -6,22 +6,28 @@ const successInit = {
     type: 'Bowman',
     level: 1,
     health: 100,
-    name: 'Clinkz'
-}
+    name: 'Clinkz',
+};
 
 test('successful initialize', () => {
     const result = new Bowman('Clinkz', 'Bowman');
+    expect(result).toEqual(successInit);
+});
 
-    expect(result).toEqual(successInit);   
-})
+test('too long name inputed', () => {
+    const check = () => new Bowman('toobignameforit');
+    expect(check).toThrow('too long name inputed');
+});
 
-test('incorrect input', () => {
-    const check = () => new Bowman('whoareyoubruh', 'someType');
+test('too short name inputed', () => {
+    const check = () => new Bowman('t');
+    expect(check).toThrow('too short name inputed');
+});
 
-    expect(check).toThrow()
-})
-
-
+test('incorrect value input', () => {
+    const check = () => new Bowman(1);
+    expect(check).toThrow('incorrect value input');
+});
 
 const successPromotion = {
     attack: (25 + 25 * 0.2),
@@ -29,26 +35,26 @@ const successPromotion = {
     type: 'Bowman',
     level: 2,
     health: 100,
-    name: 'Clinkz'
-}
+    name: 'Clinkz',
+};
 
 test('levelUp func success', () => {
     const result = new Bowman('Clinkz', 'Bowman');
 
     result.levelUp();
     expect(result).toEqual(successPromotion);
-})
+});
 
 test('damage func check', () => {
     const result = new Bowman('Clinkz', 'Bowman');
 
     result.damage(10);
-    expect(result.health).toBe(92.5)
+    expect(result.health).toBe(92.5);
 
     result.health = 0;
     result.damage(10000);
     expect(result.health).toBe(0);
-}) //Unite tests for one func?
+});
 
 test('levelUp fail', () => {
     const check = () => {
@@ -56,8 +62,7 @@ test('levelUp fail', () => {
 
         result.damage(1000);
         result.levelUp();
-    }
+    };
 
     expect(check).toThrow();
-})
-
+});
